@@ -1,0 +1,31 @@
+javascript
+Copy code
+const {
+    Connection,
+    PublicKey,
+    clusterApiUrl,
+    Keypair,
+    LAMPORTS_PER_SOL,
+    SystemProgram,
+    Transaction,
+} = require('@solana/web3.js');
+const {
+    createMint,
+    getOrCreateAssociatedTokenAccount,
+    mintTo,
+} = require('@solana/spl-token');
+
+async function mintArlo() {
+    // Connect to Solana Devnet (change to 'mainnet-beta' if needed)
+    const connection = new Connection(clusterApiUrl('devnet'), 'confirmed');
+
+    // Generate keypair for the mint authority
+    const mintAuthority = Keypair.generate();
+
+    // Create a new token mint (ARLO)
+    const decimals = 9; // Adjust decimals if needed
+    const arloMint = await createMint(
+        connection,
+        mintAuthority,
+        mintAuthority.publicKey,
+        null,
