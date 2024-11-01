@@ -22,7 +22,7 @@ async function mintArlo() {
     // Generate keypair for the mint authority
     const mintAuthority = Keypair.generate();
 
-    // Create a new token mint (ARLO)
+    // Create a new token mint ($ARLO)
     const decimals = 9; // Adjust decimals if needed
     const arloMint = await createMint(
         connection,
